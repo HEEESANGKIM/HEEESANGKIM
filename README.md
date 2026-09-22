@@ -1,9 +1,21 @@
-HEESANG KIM
+<div align="center">
 
-Computer Science · Autonomous Driving · AI Systems
+# HEESANG KIM
 
-Portfolio
+**Computer Science · AI Systems · Autonomous Driving**
 
-For more information about my research, projects, publications, and experience, please visit my portfolio website.
+<br>
 
-🔗 heeesangkim.github.io/HEEESANGKIM
+### Portfolio Website
+
+Research · Publications · Projects · Experience
+
+<br>
+
+[![Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-HEESANGKIM-181717?style=for-the-badge&logo=github)](https://heeesangkim.github.io/HEEESANGKIM/)
+
+<br>
+
+🔗 **https://heeesangkim.github.io/HEEESANGKIM/**
+
+</div>
