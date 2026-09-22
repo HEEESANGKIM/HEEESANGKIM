@@ -1,6 +1,7 @@
 import { GraduationCap, Network } from 'lucide-react';
 import { education, profile } from '../data/profile';
 import { useLanguage } from '../context/LanguageContext';
+import { assetUrl } from '../lib/storage';
 import { Section, SectionHeading, Tags } from './Primitives';
 export function About() {
   const { t, localized } = useLanguage();
@@ -13,9 +14,31 @@ export function About() {
         subtitle={t.about.subtitle}
       />
       <div className="about-grid">
+        <figure className="about-portrait">
+          <div className="portrait-image" onContextMenu={(event) => event.preventDefault()}>
+            <img
+              src={assetUrl(profile.portrait.src)}
+              alt={localized(profile.portrait.alt)}
+              width={profile.portrait.width}
+              height={profile.portrait.height}
+              loading="lazy"
+              decoding="async"
+              draggable={false}
+              onDragStart={(event) => event.preventDefault()}
+            />
+          </div>
+          <figcaption>
+            <strong>{profile.name}</strong>
+            <span>{localized(profile.affiliation)}</span>
+          </figcaption>
+        </figure>
         <div className="about-bio">
+          <p className="academic-status">
+            <span className="tiny-dot" aria-hidden="true" />
+            {localized(profile.academicStatus)}
+          </p>
           <p className="lead">{localized(profile.bio)}</p>
-          <p>{localized(profile.perspective)}</p>
+          <p>{localized(profile.background)}</p>
           <div className="perspective-note">
             <Network size={21} />
             <div>
@@ -24,7 +47,7 @@ export function About() {
             </div>
           </div>
         </div>
-        <div>
+        <div className="about-academics">
           <h3 className="eyebrow small-heading">{t.about.interests}</h3>
           <Tags items={profile.interests} />
           <div className="education">

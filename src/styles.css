@@ -1268,9 +1268,10 @@ ul {
 .contact-link > svg:first-child {
   color: var(--secondary);
 }
-.contact-link > svg:last-child,
+.contact-link > .contact-link-arrow,
 .pending-dash {
   margin-left: auto;
+  flex-shrink: 0;
   color: var(--muted);
 }
 .contact-link strong {

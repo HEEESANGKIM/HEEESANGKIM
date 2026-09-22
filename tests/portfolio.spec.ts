@@ -158,6 +158,73 @@ test('reduced motion and keyboard skip link are honored', async ({ page }) => {
   ).toBe('0s');
 });
 
+test('desktop sections occupy one screen at laptop and full-screen sizes', async ({ page }) => {
+  for (const size of [
+    { width: 1366, height: 768 },
+    { width: 1920, height: 1080 },
+  ]) {
+    await page.setViewportSize(size);
+    await page.goto('/');
+    for (const language of ['en', 'ko']) {
+      await page
+        .getByRole('button', {
+          name:
+            language === 'en'
+              ? /Switch language to English|영어로 전환/
+              : /Switch language to Korean|한국어로 전환/,
+        })
+        .click();
+      await page.evaluate(() => document.fonts.ready);
+      const measurements = await page.locator('main > section').evaluateAll((sections) => {
+        const navHeight = document.querySelector('header')!.getBoundingClientRect().height;
+        return sections.map((section) => {
+          const rect = section.getBoundingClientRect();
+          return {
+            id: section.id,
+            height: rect.height,
+            expected: innerHeight - (section.id === 'top' ? 0 : navHeight),
+          };
+        });
+      });
+      for (const section of measurements) {
+        expect(
+          Math.abs(section.height - section.expected),
+          `${size.width}×${size.height} ${language} #${section.id}`,
+        ).toBeLessThanOrEqual(2);
+      }
+      await page.locator('#main-navigation a[href="#about"]').click();
+      const aboutBounds = await page.locator('#about').boundingBox();
+      expect(aboutBounds!.y).toBeCloseTo(79, 0);
+      expect(aboutBounds!.y + aboutBounds!.height).toBeLessThanOrEqual(size.height + 2);
+    }
+  }
+});
+
+test('About shows the supplied portrait and CV education with the corrected graduation date', async ({
+  page,
+}) => {
+  for (const path of ['/', '/HEEESANGKIM/']) {
+    await page.goto(`${path}#about`);
+    const about = page.locator('#about');
+    const portrait = about.getByRole('img', { name: 'Portrait of Heesang Kim' });
+    await expect(portrait).toBeVisible();
+    await expect
+      .poll(() =>
+        portrait.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0),
+      )
+      .toBe(true);
+    await expect(
+      about.getByRole('heading', { name: 'Stony Brook University at SUNY Korea', exact: true }),
+    ).toBeVisible();
+    await expect(about.getByText('Aug 2021 – Feb 2027 (expected)', { exact: true })).toBeVisible();
+    await expect(about.getByText('Aug 2023 – May 2024', { exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'Switch language to Korean' }).click();
+    await expect(about.getByRole('img', { name: '김희상 프로필 사진' })).toBeVisible();
+    await expect(about.getByText('2021.08 – 2027.02 (졸업 예정)', { exact: true })).toBeVisible();
+    await page.getByRole('button', { name: '영어로 전환' }).click();
+  }
+});
+
 for (const theme of ['light', 'dark'] as const) {
   for (const language of ['en', 'ko'] as const) {
     test(`accessibility: ${theme}, ${language}`, async ({ page }) => {
@@ -218,8 +285,16 @@ test('capture visual review artifacts', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
   await page.screenshot({ path: 'test-results/desktop-light.png', fullPage: true });
+  await page.screenshot({ path: 'test-results/hero-light.png' });
+  await page.locator('#main-navigation a[href="#about"]').click();
+  await page.screenshot({ path: 'test-results/about-light.png' });
+  await page.locator('#main-navigation a[href="#research"]').click();
+  await page.screenshot({ path: 'test-results/research-light.png' });
   await page.getByRole('button', { name: 'Switch to dark mode' }).click();
+  await page.screenshot({ path: 'test-results/research-dark.png' });
   await page.screenshot({ path: 'test-results/desktop-dark.png', fullPage: true });
+  await page.locator('.navbar .wordmark').click();
+  await page.screenshot({ path: 'test-results/hero-dark.png' });
   await page.setViewportSize({ width: 390, height: 844 });
   await page.getByRole('button', { name: 'Switch language to Korean' }).click();
   await page.screenshot({ path: 'test-results/mobile-ko-dark.png', fullPage: true });

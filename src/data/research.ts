@@ -3,14 +3,14 @@ import type { ResearchEntry, ResearchInterest } from './types';
 // These describe interests, not completed work or claims of expertise.
 export const researchInterests: ResearchInterest[] = [
   {
-    id: 'intelligent-systems',
-    title: { en: 'AI & Efficient Systems', ko: 'AI & 효율적인 시스템' },
+    id: 'autonomous-systems',
+    title: { en: 'Autonomous & SDV Systems', ko: '자율 시스템 & SDV' },
     description: {
-      en: 'How intelligent models become practical systems, with an interest in efficient inference and edge computing.',
-      ko: '지능형 모델을 실제 시스템으로 연결하는 과정과 효율적인 추론, Edge Computing에 관심이 있습니다.',
+      en: 'The intersection of software, intelligence, and mobility—from autonomous systems to software-defined vehicles.',
+      ko: '자율 시스템부터 Software-Defined Vehicle까지 소프트웨어, 지능, 모빌리티의 접점에 관심이 있습니다.',
     },
-    tags: ['AI Systems', 'Edge AI', 'On-device AI'],
-    graphic: 'systems',
+    tags: ['Autonomous Driving', 'SDV'],
+    graphic: 'mobility',
   },
   {
     id: 'perception',
@@ -23,14 +23,14 @@ export const researchInterests: ResearchInterest[] = [
     graphic: 'perception',
   },
   {
-    id: 'autonomous-systems',
-    title: { en: 'Autonomous & SDV Systems', ko: '자율 시스템 & SDV' },
+    id: 'intelligent-systems',
+    title: { en: 'AI & Efficient Systems', ko: 'AI & 효율적인 시스템' },
     description: {
-      en: 'The intersection of software, intelligence, and mobility—from autonomous systems to software-defined vehicles.',
-      ko: '자율 시스템부터 Software-Defined Vehicle까지 소프트웨어, 지능, 모빌리티의 접점에 관심이 있습니다.',
+      en: 'How intelligent models become practical systems, with an interest in efficient inference and edge computing.',
+      ko: '지능형 모델을 실제 시스템으로 연결하는 과정과 효율적인 추론, Edge Computing에 관심이 있습니다.',
     },
-    tags: ['Autonomous Driving', 'SDV'],
-    graphic: 'mobility',
+    tags: ['AI Systems', 'Edge AI', 'On-device AI'],
+    graphic: 'systems',
   },
 ];
 

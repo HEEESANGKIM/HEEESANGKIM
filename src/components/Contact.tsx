@@ -47,7 +47,7 @@ export function Contact() {
                   <span>{description}</span>
                 </div>
                 {safeUrl(href) ? (
-                  <ArrowUpRight size={20} aria-hidden="true" />
+                  <ArrowUpRight size={20} className="contact-link-arrow" aria-hidden="true" />
                 ) : (
                   <span className="pending-dash" aria-hidden="true">
                     —

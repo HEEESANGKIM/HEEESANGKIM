@@ -4,7 +4,7 @@
 
 ## 프로필
 
-`src/data/profile.ts`에서 이메일, LinkedIn, 소개 등을 수정하고 `education`에 실제 학교·학위·기간을 입력합니다. 한글 이름을 제공받지 않았으므로 영문 이름을 두 언어에 공통으로 사용합니다.
+`src/data/profile.ts`에서 사진(`portrait`), 소속(`affiliation`), 학적(`academicStatus`), 소개(`bio`, `background`), 이메일, LinkedIn을 수정합니다. 현재 소개와 학력은 제공된 CV를 근거로 작성했습니다. 졸업 예정일은 사용자가 확인한 **2027년 2월**이며, `academicStatus`와 `education`에서 함께 관리합니다. 뉴욕 본교 수학 이력은 별도 학위로 표시하지 않습니다. 연구 관심사 문구와 태그는 기존 내용을 유지합니다.
 
 ```ts
 export const education: Education[] = [
