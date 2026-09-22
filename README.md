@@ -1,5 +1,9 @@
-# HEESANG KIM
+HEESANG KIM
 
-## Portfolio website
+Computer Science · Autonomous Driving · AI Systems
 
-(https://heeesangkim.github.io/HEEESANGKIM)
+Portfolio
+
+For more information about my research, projects, publications, and experience, please visit my portfolio website.
+
+🔗 heeesangkim.github.io/HEEESANGKIM
