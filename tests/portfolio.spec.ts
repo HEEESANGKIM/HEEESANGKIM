@@ -30,9 +30,8 @@ test('production boots at account and repository paths without broken assets', a
 
 test('theme, language, metadata and preferences persist', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Switch to dark mode' }).click();
-  await page.getByRole('button', { name: 'Switch language to Korean' }).click();
   await expect(page.locator('html')).toHaveClass('dark');
+  await page.getByRole('button', { name: 'Switch language to Korean' }).click();
   await expect(page.locator('html')).toHaveAttribute('lang', 'ko');
   await expect(
     page.getByRole('heading', { name: '호기심에서 시작하는 시스템적 사고.' }),
@@ -45,18 +44,20 @@ test('theme, language, metadata and preferences persist', async ({ page }) => {
   await page.getByRole('button', { name: '영어로 전환' }).click();
   await expect(page.locator('html')).not.toHaveClass('dark');
   await expect(page.locator('html')).toHaveAttribute('lang', 'en');
+  await page.reload();
+  await expect(page.locator('html')).not.toHaveClass('dark');
 });
 
-test('system preference follows until the user makes a choice', async ({ page }) => {
-  await page.emulateMedia({ colorScheme: 'dark' });
+test('dark mode is the default until the user chooses light', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'light' });
   await page.goto('/');
   await expect(page.locator('html')).toHaveClass('dark');
-  await page.emulateMedia({ colorScheme: 'light' });
+  await page.getByRole('button', { name: 'Switch to light mode' }).click();
   await expect(page.locator('html')).not.toHaveClass('dark');
-  await page.getByRole('button', { name: 'Switch to dark mode' }).click();
   await page.emulateMedia({ colorScheme: 'dark' });
-  await page.emulateMedia({ colorScheme: 'light' });
-  await expect(page.locator('html')).toHaveClass('dark');
+  await expect(page.locator('html')).not.toHaveClass('dark');
+  await page.reload();
+  await expect(page.locator('html')).not.toHaveClass('dark');
 });
 
 test('unavailable localStorage does not break the page or controls', async ({ page }) => {
@@ -68,9 +69,10 @@ test('unavailable localStorage does not break the page or controls', async ({ pa
     });
   });
   await page.goto('/');
-  await page.getByRole('button', { name: 'Switch to dark mode' }).click();
-  await page.getByRole('button', { name: 'Switch language to Korean' }).click();
   await expect(page.locator('html')).toHaveClass('dark');
+  await page.getByRole('button', { name: 'Switch to light mode' }).click();
+  await page.getByRole('button', { name: 'Switch language to Korean' }).click();
+  await expect(page.locator('html')).not.toHaveClass('dark');
   await expect(page.locator('html')).toHaveAttribute('lang', 'ko');
 });
 
@@ -284,6 +286,7 @@ test('populated cards filter, open accessible details and hide absent or unsafe 
 test('capture visual review artifacts', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
+  await page.getByRole('button', { name: 'Switch to light mode' }).click();
   await page.screenshot({ path: 'test-results/desktop-light.png', fullPage: true });
   await page.screenshot({ path: 'test-results/hero-light.png' });
   await page.locator('#main-navigation a[href="#about"]').click();

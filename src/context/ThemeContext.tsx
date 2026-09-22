@@ -7,16 +7,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const saved = readPreference('hk-theme');
     return saved === 'dark' || saved === 'light' ? saved : null;
   });
-  const [systemDark, setSystemDark] = useState(
-    () => matchMedia('(prefers-color-scheme: dark)').matches,
-  );
-  const theme = preference ?? (systemDark ? 'dark' : 'light');
-  useEffect(() => {
-    const query = matchMedia('(prefers-color-scheme: dark)');
-    const update = () => setSystemDark(query.matches);
-    query.addEventListener('change', update);
-    return () => query.removeEventListener('change', update);
-  }, []);
+  const theme = preference ?? 'dark';
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark');
     document

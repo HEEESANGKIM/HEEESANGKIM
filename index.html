@@ -16,7 +16,7 @@
       content="Computer Science, AI systems, and autonomous systems. The research and engineering portfolio of Heesang Kim."
     />
     <meta property="og:locale" content="en_US" />
-    <meta name="theme-color" content="#f8f9fc" />
+    <meta name="theme-color" content="#0b1018" />
     <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
     <script>
       (() => {
@@ -25,9 +25,7 @@
           theme = localStorage.getItem('hk-theme');
           language = localStorage.getItem('hk-language');
         } catch {}
-        const dark =
-          theme === 'dark' ||
-          (theme !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches);
+        const dark = theme !== 'light';
         document.documentElement.classList.toggle('dark', dark);
         document.documentElement.lang = language === 'ko' ? 'ko' : 'en';
         document.querySelector('meta[name="theme-color"]').content = dark ? '#0b1018' : '#f8f9fc';

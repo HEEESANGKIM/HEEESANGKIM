@@ -162,13 +162,13 @@
   fill: var(--secondary);
   stroke: none;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.07em;
 }
 
 .robotics-callouts .robotics-label-faint {
   fill: var(--muted);
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .robotics-axis {
@@ -178,7 +178,7 @@
 }
 
 .robotics-axis text {
-  font-size: 7px;
+  font-size: 9px;
 }
 
 .robotics-pipeline {
@@ -231,11 +231,11 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .sdv-wheel-rotation {
-    animation: sdv-wheel-roll 2.4s linear infinite;
+    animation: sdv-wheel-roll 1.35s linear infinite;
   }
 
   .sdv-lane-markings {
-    animation: sdv-road-travel 0.9s linear infinite;
+    animation: sdv-road-travel 0.5s linear infinite;
   }
 }
 
@@ -405,7 +405,7 @@
   fill: var(--secondary);
   stroke: none;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: 0.06em;
 }
 
@@ -496,7 +496,7 @@
 }
 
 .robotics-research-labels {
-  font-size: 7px;
+  font-size: 9px;
   letter-spacing: 0.04em;
 }
 

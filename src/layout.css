@@ -48,14 +48,14 @@ html {
   display: block;
   margin-top: 5px;
   color: var(--secondary);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
 }
 .about-bio > .academic-status {
   display: flex;
   align-items: baseline;
   gap: 8px;
-  font-size: 10px;
+  font-size: 12px;
   color: var(--accent);
   line-height: 1.8;
   margin-bottom: 16px;
@@ -86,12 +86,12 @@ html {
 }
 .education-entry p {
   color: var(--secondary);
-  font-size: 11px;
+  font-size: 13px;
   margin-top: 3px;
 }
 .education-entry .mono {
   display: block;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.8;
   margin-top: 6px;
 }
