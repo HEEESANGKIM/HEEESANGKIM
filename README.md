@@ -12,7 +12,7 @@ Research · Publications · Projects · Experience
 
 <br>
 
-[![Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-HEESANGKIM-181717?style=for-the-badge&logo=github)]([https://heeesangkim.github.io/])
+[![Portfolio](https://img.shields.io/badge/Visit%20My%20Portfolio-HEESANGKIM-181717?style=for-the-badge&logo=github)](https://heeesangkim.github.io/)
 
 <br>
 
